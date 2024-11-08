@@ -1,10 +1,16 @@
 import { connectToDatabase } from "@/lib/mongoDb";
 
-export default async function handler(req, res) {
+export async function GET(req) {
     try {
         await connectToDatabase();
-        res.status(200).json({ message: 'Successfully connected to MongoDB' });
+        return new Response(JSON.stringify({ message: 'Successfully connected to MongoDB' }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+        });
     } catch (error) {
-        res.status(500).json({ message: 'Database connection failed', error: error.message });
+        return new Response(JSON.stringify({ message: 'Database connection failed', error: error.message }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+        });
     }
 }
