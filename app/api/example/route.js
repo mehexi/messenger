@@ -1,6 +1,5 @@
 import { connectToDatabase } from "@/lib/mongoDb";
 
-
 export async function GET(req) {
     try {
         await connectToDatabase();
